@@ -18,7 +18,11 @@ import java.util.Map;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.FixMethodOrder;//delete
+import org.junit.runners.MethodSorters;//delete
 
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)//delete
 public class EvaluationServiceTest {
 
 	private static final EvaluationService evaluationService = new EvaluationService();
@@ -326,6 +330,14 @@ public class EvaluationServiceTest {
 	public void testAWholePhrase() {
 		assertEquals("ickquay astfay unray", evaluationService.toPigLatin("quick fast run"));
 	}
+	@Test
+	public void testWordWithoutVowels() {
+		assertEquals("kdfway", evaluationService.toPigLatin("kdfw"));
+	}
+	@Test
+	public void testPhraseWithoutVowels() {
+		assertEquals("kdfway ickquay astfay unray", evaluationService.toPigLatin("kdfw quick fast run"));
+	}
 
 	/*******************************************************************
 	 * Question 9
@@ -573,6 +585,11 @@ public class EvaluationServiceTest {
 	public void phraseMissingAnotherCharacterIsNotPangram() {
 		assertFalse(evaluationService.isPangram("five boxing wizards jump quickly at it"));
 	}
+	
+	@Test
+	public void testNonAlphabeticalPangram() {
+		assertTrue(evaluationService.isPangram("abcde0fghijklm-0nopqr!stuvwxyz"));
+	}//using to test my method since it's checking in an irregular way for pangrams
 
 	/*******************************************************************
 	 * Question 17
