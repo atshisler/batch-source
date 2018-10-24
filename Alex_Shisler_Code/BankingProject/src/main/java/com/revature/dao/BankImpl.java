@@ -25,11 +25,12 @@ public class BankImpl implements BankDao {
 	private BankUser currentUser;
 	
 	final static Logger Log = Logger.getLogger(BankImpl.class);
-
+/*----------------------Variables----------------------------------*/
+	
 	private BankImpl() {
 		bankList = new ArrayList<BankUser>();
 	}
-
+//------------------------------------------------------------------
 	public static BankImpl getBankDao() {
 		if (bankDao == null) {
 			bankDao = new BankImpl();

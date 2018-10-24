@@ -9,8 +9,8 @@ public class BankViewer {
 	
 	private BankServices services;
 	
-	public BankViewer() {
-		
+	public BankViewer() 
+	{
 	}
 	
 	public void displayLogo() {

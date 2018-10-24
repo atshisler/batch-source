@@ -1,6 +1,7 @@
 package com.revature.services;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,8 +23,7 @@ public class BankServices {
 	private boolean exit = false;
 	private static BankServices bankService;
 	private BankImpl data;
-
-
+	/*--------------------Variables---------------------*/
 	private BankServices() {
 		super();
 		data = data.getBankDao();
@@ -48,21 +48,21 @@ public class BankServices {
 	/*---------------------Getters---------------------------*/
 
 	public void start() {
-		
-		while(!exit) {
-		if (!logged) {
-			viewer.displayLogo();
-			viewer.signInOptions();
-			loginMenu();
-		}//loginOptions
-		else {
-			if(data.getBankUser().getRole().equals("admin"))
-				adminAcctOptions();
-			else 
-				accountOptions();
-		}//accountOptions
-		}//loop
-		
+
+		while (!exit) {
+			if (!logged) {
+				viewer.displayLogo();
+				viewer.signInOptions();
+				loginMenu();
+			} // loginOptions
+			else {
+				if (data.getBankUser().getRole().equals("admin"))
+					adminAcctOptions();
+				else
+					accountOptions();
+			} // accountOptions
+		} // loop
+
 	}
 
 	private void loginMenu() {
@@ -95,44 +95,51 @@ public class BankServices {
 		BankUser newUser = new BankUser();
 		String temp;
 		viewer.namePrompt();
-		//make it so user has to put in unique name
-		while(!data.isUsernameUnique(temp = reader.next())) {
-			System.out.println("Username " + temp + " is already taken, please try a different one.");
+		// make it so user has to put in unique name
+		try {
+			while (!data.isUsernameUnique(temp = reader.next())) {
+				System.out.println("Username " + temp + " is already taken, please try a different one.");
+			}
+			newUser.setAccountName(temp);
+			viewer.passwordPrompt();
+			newUser.setPassword(reader.next());
+			viewer.firstNamePrompt();
+			newUser.setFirstName(reader.next());
+			viewer.lastNamePrompt();
+			newUser.setLastName(reader.next());
+		} catch (InputMismatchException e) {
+			System.out.println("Invalid input provided.");
 		}
-		newUser.setAccountName(temp);
-		viewer.passwordPrompt();
-		newUser.setPassword(reader.next());
-		viewer.firstNamePrompt();
-		newUser.setFirstName(reader.next());
-		viewer.lastNamePrompt();
-		newUser.setLastName(reader.next());
 		newUser.setRole("user");
 		newUser.setIsAccessible("n");
-		if(data.insertBankCust(newUser))
+		if (data.insertBankCust(newUser))
 			viewer.accountConfirmation();
 	}// accountCreation process
 
 	private void logIn() {
-		viewer.namePrompt();
-		String user;
-		String pass;
-		user = reader.next();
-		viewer.passwordPrompt();
-		pass = reader.next();
-		data.Login(user, pass).getCid();
-		if (data.getBankUser().getCid() != -1 && data.getBankUser().getIsAccessible().equals("y")) {	
-			logged = true;
-		}
-		else if(data.getBankUser().getCid() == -1)
-			System.out.println("Invalid login credentials, please try again");
-		else
-			System.out.println("Still waiting on admin access, please try again later.");
-		
+		try {
+			viewer.namePrompt();
+			String user;
+			String pass;
 
-	}//logIn
-	
+			user = reader.next();
+			viewer.passwordPrompt();
+			pass = reader.next();
+			data.Login(user, pass).getCid();
+
+			if (data.getBankUser().getCid() != -1 && data.getBankUser().getIsAccessible().equals("y")) {
+				logged = true;
+			} else if (data.getBankUser().getCid() == -1)
+				System.out.println("Invalid login credentials, please try again");
+			else
+				System.out.println("Still waiting on admin access, please try again later.");
+		} catch (InputMismatchException e) {
+			System.out.println("Invalid input type.");
+		}
+	}// logIn
+
 	private void accountOptions() {
-		
+
 		viewer.accountOptions(data.getBankUser());
 		switch (reader.nextInt()) {
 		case 1:
@@ -151,16 +158,15 @@ public class BankServices {
 			System.out.println("Invalid input");
 			break;
 		}
-		
-	}//accountOptions
-	
+
+	}// accountOptions
+
 	private void adminAcctOptions() {
 		viewer.adminAcctOptions(data.getBankUser());
 		switch (reader.nextInt()) {
 		case 1:
 			deposit();
 			break;
-
 		case 2:
 			withdrawal();
 			break;
@@ -177,44 +183,55 @@ public class BankServices {
 			System.out.println("Invalid input");
 			break;
 		}
-		
+
 	}
-	
+
 	private void deposit() {
 		viewer.depositDisplay();
 		double amount;
-		amount = reader.nextDouble();
-		data.deposit(amount);
-	}
-	
+		try {
+			amount = reader.nextDouble();
+			data.deposit(amount);
+		} catch (InputMismatchException e) {
+			e.printStackTrace();
+			System.out.println("Invalid data type");
+			
+		}//try catch
+	}//deposit
+
 	private void withdrawal() {
 		viewer.withdrawalDisplay();
 		double amount;
-		amount = reader.nextDouble();
-		data.withdrawal(amount);
-	}
-	
+		try {
+			amount = reader.nextDouble();
+			data.withdrawal(amount);
+		} catch (InputMismatchException e) {
+			e.printStackTrace();
+			System.out.println("Invalid data type");
+		} // try-catch
+	}// withdrawal
+
 	private void checkBalance() {
 		data.getAccountInfo();
 		viewer.displayBalance(data.getBankUser().getAccountBal());
-	}
-	
+	}//checkBalance()
+
 	private void logOut() {
 		viewer.logOutView();
 		logged = false;
 	}
-	
+
 	private void grantAccess() {
-		ArrayList<BankUser>  table = data.getAllBankCusts();
+		ArrayList<BankUser> table = data.getAllBankCusts();
 		viewer.displayUsers(table);
 		nonUserID = reader.nextInt();
-		
-		for(int i = 0; i < table.size(); i++) {
-			if(table.get(i).getCid() == nonUserID)
+
+		for (int i = 0; i < table.size(); i++) {
+			if (table.get(i).getCid() == nonUserID)
 				actedUser = new BankUser(table.get(i));
 		}
-		viewer.confirmUserChange(actedUser);//expensive
-		switch(reader.next()) {
+		viewer.confirmUserChange(actedUser);// expensive
+		switch (reader.next()) {
 		case "yes":
 			data.grantAccess(nonUserID);
 			break;
@@ -223,8 +240,7 @@ public class BankServices {
 		default:
 			System.out.println("Invalid input.");
 		}
-		
-		
+
 	}
 	/*----------------------Methods-------------------------*/
 }
