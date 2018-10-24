@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,16 +15,14 @@ public class BankServices {
 
 	private Scanner reader;
 	private BankViewer viewer = new BankViewer();
-	private int logDex = -1;
+	private BankUser actedUser;
+	private int nonUserID = -1;
 	private boolean logged = false;
-	private boolean loginScr = true;
-	private boolean accountCreation = false;
-	private boolean deposit = false;
-	private boolean withdrawal = false;
 	private boolean isAccessible = false;
 	private boolean exit = false;
 	private static BankServices bankService;
 	private BankImpl data;
+
 
 	private BankServices() {
 		super();
@@ -49,78 +48,96 @@ public class BankServices {
 	/*---------------------Getters---------------------------*/
 
 	public void start() {
-		viewer.displayLogo();
+		
 		while(!exit) {
 		if (!logged) {
+			viewer.displayLogo();
 			viewer.signInOptions();
 			loginMenu();
 		}//loginOptions
 		else {
-			accountOptions();
+			if(data.getBankUser().getRole().equals("admin"))
+				adminAcctOptions();
+			else 
+				accountOptions();
 		}//accountOptions
 		}//loop
 		
 	}
 
-	public void loginMenu() {
+	private void loginMenu() {
 		int choice = reader.nextInt();
 		switch (choice) {
 		case 1:
 			accountCreation();
-			accountCreation = true;
-			loginScr = false;
-			deposit = false;
-			withdrawal = false;
 			break;
 
 		case 2:
 			logIn();
-			accountCreation = false;
-			loginScr = true;
-			deposit = false;
-			withdrawal = false;
 			break;
-
+		case 3:
+			exit();
+			break;
 		default:
 			System.out.println("Invalid input");
 			break;
 		}
 	}
 
-	// finish implementation
-	public void accountCreation() {
-		String wordInput;
-		viewer.namePrompt();
-		wordInput = reader.next();
-		viewer.passwordPrompt();
-		wordInput = reader.next();
+	private void exit() {
+		// TODO Auto-generated method stub
+		exit = true;
+		viewer.exitView();
+	}
 
+	// finish implementation
+	private void accountCreation() {
+		BankUser newUser = new BankUser();
+		String temp;
+		viewer.namePrompt();
+		//make it so user has to put in unique name
+		while(!data.isUsernameUnique(temp = reader.next())) {
+			System.out.println("Username " + temp + " is already taken, please try a different one.");
+		}
+		newUser.setAccountName(temp);
+		viewer.passwordPrompt();
+		newUser.setPassword(reader.next());
+		viewer.firstNamePrompt();
+		newUser.setFirstName(reader.next());
+		viewer.lastNamePrompt();
+		newUser.setLastName(reader.next());
+		newUser.setRole("user");
+		newUser.setIsAccessible("n");
+		if(data.insertBankCust(newUser))
+			viewer.accountConfirmation();
 	}// accountCreation process
 
-	public void logIn() {
+	private void logIn() {
 		viewer.namePrompt();
 		String user;
 		String pass;
 		user = reader.next();
 		viewer.passwordPrompt();
 		pass = reader.next();
-		logDex = data.Login(user, pass);
-		if (logDex != -1) {
-			System.out.println("Hello " + listAllBankCustomers().get(logDex).getFirstName() + ".");
+		data.Login(user, pass).getCid();
+		if (data.getBankUser().getCid() != -1 && data.getBankUser().getIsAccessible().equals("y")) {	
 			logged = true;
 		}
-		else
+		else if(data.getBankUser().getCid() == -1)
 			System.out.println("Invalid login credentials, please try again");
+		else
+			System.out.println("Still waiting on admin access, please try again later.");
+		
 
 	}//logIn
 	
-	public void accountOptions() {
-		viewer.accountOptions();
+	private void accountOptions() {
+		
+		viewer.accountOptions(data.getBankUser());
 		switch (reader.nextInt()) {
 		case 1:
 			deposit();
 			break;
-
 		case 2:
 			withdrawal();
 			break;
@@ -135,32 +152,79 @@ public class BankServices {
 			break;
 		}
 		
+	}//accountOptions
+	
+	private void adminAcctOptions() {
+		viewer.adminAcctOptions(data.getBankUser());
+		switch (reader.nextInt()) {
+		case 1:
+			deposit();
+			break;
+
+		case 2:
+			withdrawal();
+			break;
+		case 3:
+			checkBalance();
+			break;
+		case 4:
+			grantAccess();
+			break;
+		case 5:
+			logOut();
+			break;
+		default:
+			System.out.println("Invalid input");
+			break;
+		}
+		
 	}
 	
-	public void deposit() {
+	private void deposit() {
 		viewer.depositDisplay();
 		double amount;
 		amount = reader.nextDouble();
 		data.deposit(amount);
 	}
 	
-	public void withdrawal() {
+	private void withdrawal() {
 		viewer.withdrawalDisplay();
 		double amount;
 		amount = reader.nextDouble();
 		data.withdrawal(amount);
 	}
 	
-	public void checkBalance() {
+	private void checkBalance() {
 		data.getAccountInfo();
 		viewer.displayBalance(data.getBankUser().getAccountBal());
 	}
 	
-	public void logOut() {
+	private void logOut() {
 		viewer.logOutView();
-		logDex = -1;
 		logged = false;
-		exit = true;
+	}
+	
+	private void grantAccess() {
+		ArrayList<BankUser>  table = data.getAllBankCusts();
+		viewer.displayUsers(table);
+		nonUserID = reader.nextInt();
+		
+		for(int i = 0; i < table.size(); i++) {
+			if(table.get(i).getCid() == nonUserID)
+				actedUser = new BankUser(table.get(i));
+		}
+		viewer.confirmUserChange(actedUser);//expensive
+		switch(reader.next()) {
+		case "yes":
+			data.grantAccess(nonUserID);
+			break;
+		case "no":
+			break;
+		default:
+			System.out.println("Invalid input.");
+		}
+		
+		
 	}
 	/*----------------------Methods-------------------------*/
 }

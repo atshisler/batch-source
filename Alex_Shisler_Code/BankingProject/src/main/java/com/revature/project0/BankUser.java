@@ -32,7 +32,16 @@ public class BankUser {
 		accountBal = 0.00;
 	}
 	
-	
+	public BankUser(BankUser user) {
+		this.cid = user.getCid();
+		this.accountName = user.getAccountName();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.password = user.getPassword();
+		this.role = user.getRole();
+		this.isAccessible = user.getIsAccessible();
+		this.accountBal = user.getAccountBal();
+	}
 
 	public String getRole() {
 		return role;
@@ -108,9 +117,11 @@ public class BankUser {
 
 	@Override
 	public String toString() {
-		return "\n-------------------------------\n CID = " + cid + "\n Usename = " + accountName + "\n First Name = " + firstName + "\n Last Name = "
-				+ lastName + "\n Password =" + password + "\n Account Balance = $" + accountBal + "\n";
-	}
+		return "User: CID=" + cid + ", Username = " + accountName + ", " + firstName + " "
+				+ lastName + " Role = " + role + ", Account Access =" + isAccessible + "";
+	}//display for admin
+
+	
 	
 	
 	
