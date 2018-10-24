@@ -19,7 +19,6 @@ public class BankServices {
 	private BankUser actedUser;
 	private int nonUserID = -1;
 	private boolean logged = false;
-	private boolean isAccessible = false;
 	private boolean exit = false;
 	private static BankServices bankService;
 	private BankImpl data;

@@ -14,11 +14,11 @@ public class BankViewer {
 	}
 	
 	public void displayLogo() {
-		for(int i = 0; i < 29; i++) {
+		for(int i = 0; i < 32; i++) {
 			System.out.print("*");
 		}
-		System.out.println("\nWelcome to The Bank of Cash!");
-		for(int i = 0; i < 29; i++) {
+		System.out.println("\nWelcome to The Bank of Revature!");
+		for(int i = 0; i < 32; i++) {
 			System.out.print("*");
 		}
 		System.out.println();
@@ -87,9 +87,9 @@ public class BankViewer {
 	
 	public void confirmUserChange(BankUser user) {
 		if(user.getIsAccessible().equals("n"))
-			System.out.println("Allow access for " + user.getCid()+ ", " + user.getFirstName() + " " + user.getLastName() + "?");
+			System.out.println("Allow access for CID: " + user.getCid()+ ", " + user.getFirstName() + " " + user.getLastName() + "?");
 		else
-			System.out.println("Freeze access for " + user.getCid()+ ", " + user.getFirstName() + " " + user.getLastName() + "?");
+			System.out.println("Freeze access for CID: " + user.getCid()+ ", " + user.getFirstName() + " " + user.getLastName() + "?");
 	}
 	
 }
