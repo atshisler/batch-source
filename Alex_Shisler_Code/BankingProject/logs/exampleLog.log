@@ -1,0 +1,5 @@
+2018-10-23 19:24:15 ERROR BankImpl:281 - New Balance: 500328.0Amount deposited: 25.0
+2018-10-23 19:25:08 ERROR BankImpl:281 - New Balance: 500353.0Amount deposited: 25.0
+2018-10-23 19:26:08 ERROR BankImpl:281 - New Balance: 500408.0Amount deposited: 55.0
+2018-10-23 19:27:29 ERROR BankImpl:281 - New Balance: 500474.0Amount deposited: 66.0
+2018-10-23 19:29:34 WARN  BankImpl:281 - New Balance: 500476.0Amount deposited: 2.0
