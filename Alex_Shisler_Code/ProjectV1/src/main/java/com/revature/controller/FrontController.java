@@ -23,7 +23,7 @@ public class FrontController extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 7963624447234248456L;
-	private RequestHelper rh = new RequestHelper();
+	//private RequestHelper rh = new RequestHelper();
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String switchString = req.getContextPath();
@@ -31,7 +31,7 @@ public class FrontController extends HttpServlet {
 		if (switchString.equals("/ProjectV1") || switchString.equals("EmployeeLoginPage.html")) {
 
 			System.out.println("Shrug");
-			rh.process(req, res);
+			new RequestHelper().process(req, res);
 		} else {
 			System.out.println("Success");
 			super.doGet(req, res);

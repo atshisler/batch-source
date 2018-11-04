@@ -22,36 +22,10 @@
 
 	<servlet-mapping>
 		<servlet-name>FrontController</servlet-name>
-		<url-pattern>/api/</url-pattern>
+		<url-pattern>/api</url-pattern>
 	</servlet-mapping>
 
-	<filter>
-		<filter-name>LoginFilter</filter-name>
-		<filter-class>com.revature.controller.FrontController2</filter-class>
-	</filter>
-
-	<filter>
-		<filter-name>LoginFilter2</filter-name>
-		<filter-class>com.revature.controller.FrontController</filter-class>
-	</filter>
-	<filter>
-		<filter-name>LoginFilter3</filter-name>
-		<filter-class>com.revature.controller.FrontController</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>LoginFilter</filter-name>
-		<url-pattern>/EmployeeLoginPage/*</url-pattern>
-	</filter-mapping>
-
-	<filter-mapping>
-		<filter-name>LoginFilter2</filter-name>
-		<url-pattern>/EmployeePage</url-pattern>
-	</filter-mapping>
-
-	<filter-mapping>
-		<filter-name>LoginFilter3</filter-name>
-		<url-pattern>/Reimbursement</url-pattern>
-	</filter-mapping>
+	
 
 </web-app>
 

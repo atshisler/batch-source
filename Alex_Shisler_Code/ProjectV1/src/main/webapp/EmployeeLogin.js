@@ -34,26 +34,32 @@ window.onload = () =>{
 										// first step of ajax
 		xhr.onreadystatechange = function(){
 			if((xhr.readyState == 4) && xhr.status >= 200 && xhr.status < 300){
+				console.log("test2");
 				let formData = document.getElementById("logginForm");
 				if(formData != null){
+					console.log("yay");
 				let user = {
 					email : formData[0].value,
 					password : formData[1].value					
-				};//new user
+				};// new user
+				
 				user.email = formData[0].value;
 				user.password = formData[1].value;
 				let  loginfo = JSON.stringify(user);
-				console.log(user.email);
-				//console.log(loginfo);
-				xhr.open("POST", "http://localhost:6016/ProjectV1/?email=" + user.email + "&password=" + user.password, true);
+				console.log("EMAIL " + user.email);
+				// console.log(loginfo);
+				xhr.open("POST", "http://localhost:6016/ProjectV1/api?email=" + user.email + "&password=" + user.password, true);
 				xhr.setRequestHeader("Content-Type", "application/json");
-				console.log(loginfo.toString());
+				// console.log(loginfo.toString());
 				xhr.send(loginfo.toString());
-				console.log(xhr.responseText);
-			}//fill in formdata
-		}// response received
+				// console.log(xhr.responseText);
+			}// fill in formdata
+				else
+					console.log("Uh oh");
+		}// response received.
+		
 		};
-		xhr.open("POST", "http://localhost:6016/ProjectV1/api");
+		xhr.open("POST", "http://localhost:6016/ProjectV1/");
 		xhr.setRequestHeader("Content-Type", "application/json");
 		xhr.send();
 	});

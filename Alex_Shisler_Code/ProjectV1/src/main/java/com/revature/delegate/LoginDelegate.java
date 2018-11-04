@@ -1,6 +1,7 @@
 package com.revature.delegate;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,8 @@ public class LoginDelegate {
 		if(login == null) {
 			System.out.println("Failure!");	
 			resp.sendRedirect("EmployeeLoginPage.html");
+			PrintWriter out = resp.getWriter();
+			out.println("Invalid credentials");
 		} else {
 			System.out.println("Success!");
 			resp.sendRedirect("EmployeePage.html");
