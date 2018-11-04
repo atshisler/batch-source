@@ -1,0 +1,17 @@
+
+button{
+	font-family: inherit;
+}
+
+form{
+    font-family: monospace;
+    style: italic;
+}
+
+body{
+	font-family: Arial;
+}
+nav{
+    font-family: fantasy;
+    color: red;
+}
