@@ -1,0 +1,8 @@
+img {
+    animation: spining 0.3s;
+}
+
+img:hover {
+    transition: spining 0.3s;
+}
+@-webkit-keyframes spining{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@-moz-keyframes spining{0%{-moz-transform:rotate(0deg)}100%{-moz-transform:rotate(360deg)}}

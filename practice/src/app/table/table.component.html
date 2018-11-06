@@ -1,0 +1,31 @@
+<button (click)="toggleFormat()">{{ formatted ? 'Unstyle' : 'Style' }}</button>
+<div class="container">
+  <table class="tab" [ngClass]="{'table': formatted, 'table-striped': formatted, 'table-dark': formatted}">
+    <tr class="row">
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Birthday</th>
+      <th>Email</th>
+    </tr>
+    <!-- for each entry, a table row, with key-many table-data -->
+    <tr *ngFor="let entry of users" class="row">
+      <td>{{ entry.firstName.toLowerCase() | titlecase }}</td>
+      <td>{{ entry.lastName.toLowerCase() | titlecase }}</td>
+      <td>{{ entry.birthday | date: 'mediumDate' }}</td>
+      <td>{{ entry.email }}</td>
+    </tr>
+    <!-- <tr class="row">
+      <td *ngFor="let row of users">{{ row.firstName }}</td>
+    </tr>
+    <tr>
+      <td *ngFor="let row of users">{{ row.lastName }}</td>
+    </tr>
+    <tr>
+      <td *ngFor="let row of users">{{ row.birthday }}</td>
+    </tr>
+    <tr>
+      <td *ngFor="let row of users">{{ row.email }}</td>
+    </tr> -->
+  </table>
+
+</div>

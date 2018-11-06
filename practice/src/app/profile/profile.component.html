@@ -1,0 +1,16 @@
+<div *ngIf="display">
+  <ul> 
+    <li *ngFor="let item of user | keyvalue">
+         
+          <ul *ngIf="item.key.length">
+            <li *ngFor="let el of user[key]">
+
+              {{ el }}
+            </li>
+          </ul> 
+          {{item.key}}:{{item.value}}
+    </li>
+    
+  </ul>
+</div>
+<button (click)="toggleProfile()">{{ toggleButtonText() }}</button>

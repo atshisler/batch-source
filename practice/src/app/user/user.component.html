@@ -1,0 +1,16 @@
+<ol>
+  <li *ngFor="let user of users">
+    <div>
+      <ul>
+        <li *ngFor="let prop of user | keyvalue">
+          <div *ngIf="!isObject(prop.value)">
+            {{prop.key}}:{{prop.value}}
+          </div>
+        </li>
+      </ul>
+      <ul>
+      </ul>
+    </div>
+    
+  </li>
+</ol>

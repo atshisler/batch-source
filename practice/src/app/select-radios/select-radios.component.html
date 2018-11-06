@@ -1,0 +1,15 @@
+<form #f="ngForm">
+  <label>colors</label>
+  <input type="radio" name="props" [value]="props.colors" [(ngModel)]="props.colors" >
+  <label>days</label>
+  <input type="radio" name="props" [value]="props.days" [(ngModel)]="props.days">
+  <label>animals</label>
+  <input type="radio" name="props" [value]="props.animals" [(ngModel)]="props.animals">
+</form>
+
+<p>Form value: {{ f.value.props | json }} </p>
+<ul>
+  <li *ngFor="let item of f.value.props">
+    {{ item }}
+  </li>
+</ul>
