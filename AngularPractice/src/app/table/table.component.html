@@ -1,0 +1,15 @@
+<div>
+  <h3>Table Component</h3>
+</div>
+<table style="width:100%">
+  <tr>
+    <th>Full Name</th>
+    <th>Email</th>
+    <th>Birthday</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{user.name | titlecase}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.birthday | date }}</td>
+  </tr>
+</table>
