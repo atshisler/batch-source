@@ -1,0 +1,10 @@
+<div *ngIf="toggle"  else elseBlock>
+  <button class="clear" (click)="ToggleOnOff()">Show</button>
+  <p>
+    {{userObject.firstName + " " + userObject.lastName}}
+  </p>
+</div>
+<div *ngIf="toggle == false">
+  <button class="clear" (click)="ToggleOnOff()">Hide</button>
+</div>
+

@@ -1,0 +1,13 @@
+
+<a *ngFor="let Object of peopleTable">
+  <table>
+    <tr>
+      <th>{{Object.firstName | titlecase}}</th>
+      <th>{{Object.lastName | titlecase}}</th>
+      <th>{{Object.email}}</th>
+      <th>{{Object.birthday | date}}</th>
+    </tr>  
+  </table>
+</a>
+
+ 

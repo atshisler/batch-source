@@ -1,0 +1,15 @@
+<form>
+  <p><input type="radio" name="group" value="Animal" (click)="ToggleAnimal()">
+  <input type="radio" name="group" value="Color" (click)=ToggleColor()>
+  <input type="radio" name="group" value="Day" (click)=ToggleDay()></p>
+</form>
+
+<div *ngIf="whichGroup == 1">
+  <p>{{animalList}}</p>
+</div>
+<div *ngIf="whichGroup == 2">
+  <p>{{colorList}}</p>
+</div>
+<div *ngIf="whichGroup == 3">
+  <p>{{dayList}}</p>
+</div>
