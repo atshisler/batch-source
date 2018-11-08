@@ -6,7 +6,7 @@ public class SyncDemoDriver {
 		
 		/*
 		 *using the StringTestRunnable as our job
-		 *
+		 */
 		StringBuilder sbuild = new StringBuilder();
 		StringBuffer sbuffer = new StringBuffer();
 		Runnable job = new StringTestRunnable(sbuild, sbuffer);
@@ -29,20 +29,20 @@ public class SyncDemoDriver {
 		System.out.println();
 		System.out.println("StringBuffer result:");
 		System.out.println(sbuffer);
-		*/
+		//*/
 		
 		//using the CountTestRunnable as our job
 
 		
-//		Runnable lambdaJob = ()->{
-//			System.out.println("This is the implementation of the Runnable"
-//					+ " interface's only method. \n We achieved this using a lambda!");
-//		};
-//		
-//		Thread t3 = new Thread(lambdaJob);
+		Runnable lambdaJob = ()->{
+			System.out.println("This is the implementation of the Runnable"
+					+ " interface's only method. \n We achieved this using a lambda!");
+		};
 		
+		Thread t3 = new Thread(lambdaJob);
+		t3.start();
 		
-		
+		/*
 		Count c = new Count();
 		Runnable job = new CountTestRunnable(c);
 		Thread t1 = new Thread(job);
@@ -60,7 +60,7 @@ public class SyncDemoDriver {
 			e.printStackTrace();
 		}
 		System.out.println("Count: "+c.count);
-		
+		*/
 	}
 
 }
