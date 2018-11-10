@@ -1,0 +1,58 @@
+<div class="card w-75 bg-light">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <div *ngIf="!isHidden()">
+          <h6>Email: {{ email.value }} </h6>
+          <h6>Password: {{ password.value }}</h6>
+          <h6>Address: {{ address.value }}</h6>
+          <h6>Address2: {{ address2.value}}</h6>
+          <h6>City: {{ city.value }}</h6>
+          <h6>Zipcode: {{ zip.value }}</h6>
+          <a class="btn btn-outline-secondary" (click)="hide()">Hide</a>
+      </div>
+      <div *ngIf="isHidden()">
+         <h6>Email</h6>
+          <h6>Password</h6>
+          <h6>Address</h6>
+          <h6>Address2</h6>
+          <h6>City</h6>
+          <h6>Zip</h6>
+        <a class="btn btn-outline-info" (click)="show()">Show</a>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Email</label>
+          <input type="email" class="form-control" placeholder="Email" name ="email" #email>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Password</label>
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="password" #password>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" #address>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress2">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="address2" #address2>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control" id="inputCity" name="city" #city>
+        </div>
+       
+        <div class="form-group col-md-2">
+          <label for="inputZip">Zip</label>
+          <input type="text" class="form-control" id="inputZip" name="zip" #zip >
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="editProfile(email.value, password.value, address.value, address2.value, city.value, zip.value)">Submit</button>
+    </form>

@@ -1,0 +1,48 @@
+<div>
+  <form class="ui large form segment">
+    <h3 class="ui header">Birthdays</h3>
+      <div class="field">
+        <label for="first">First Name:</label>
+        <input name="first" #newFirst>
+      </div>
+      <div class="field">
+        <label for="last">Last Name:</label>
+        <input name="last" #newLast>
+      </div>
+      <div class="field">
+        <label for="email">Email:</label>
+        <input name="email" #newEmail>
+      </div>
+      <div class="field">
+        <label for="birthday">Birthday:</label>
+        <input name="birthday" #newBirthday>
+      </div>
+      <button (click)="addBirthday(newFirst, newLast, newEmail, newBirthday)" class="ui positive right floated button">Submit</button>
+  </form>
+</div>
+<br>
+<br>
+<br>
+
+<table class="table">
+  <thead>
+    <li>
+       <tr>
+        <td class="col">Name</td>
+        <td class="col">Email</td>
+        <td>Birthday</td>
+      </tr>
+    </li>
+  </thead>
+    <tbody>
+      
+    </tbody>
+</table>
+
+<div class="ui grid posts">
+  <div *ngFor ="let birthday of display">
+    <li class="list-group-item"> {{ birthday.first }} {{ birthday.last }}
+        {{ birthday.email }} {{ birthday.birthday }}
+    </li>
+  </div>
+</div>

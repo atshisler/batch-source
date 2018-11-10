@@ -1,0 +1,47 @@
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary" (click)="onAnimalCheck()">
+      <input type="radio" name="type" id="option1" value="animals"> Animals
+    </label>
+    <label class="btn btn-secondary" (click)="onColorCheck()">
+      <input type="radio" name="type" id="option2" value="colors" > Colors
+    </label>
+    <label class="btn btn-secondary" (click)="onDayCheck()">
+      <input type="radio" name="type" id="option3" value="days"> Days
+    </label>
+  </div>
+     
+<div class="list-group">
+    <div *ngIf="isAnimal()">
+        <li class="list-group-item">Horse</li>
+        <li class="list-group-item">Pig</li>
+        <li class="list-group-item">Cow</li>
+        <li class="list-group-item">Dog</li>
+        <li class="list-group-item">Cat</li>
+        <li class="list-group-item">Chicken</li>
+        <li class="list-group-item">Bird</li>
+      </div>
+    
+      <div *ngIf="isColor()">
+        <li class="list-group-item">Green</li>
+        <li class="list-group-item">Blue</li>
+        <li class="list-group-item">Orange</li>
+        <li class="list-group-item">Red</li>
+        <li class="list-group-item">Purple</li>
+        <li class="list-group-item">Gold</li>
+        <li class="list-group-item">Gray</li>
+      </div>
+    
+      <div *ngIf="isDay()">
+        <li class="list-group-item">Monday</li>
+        <li class="list-group-item">Tuesday</li>
+        <li class="list-group-item">Wednesday</li>
+        <li class="list-group-item">Thursday</li>
+        <li class="list-group-item">Friday</li>
+        <li class="list-group-item">Saturday</li>
+        <li class="list-group-item">Sunday</li>
+      </div>
+    
+
+</div>
+
+  
