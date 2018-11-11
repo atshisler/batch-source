@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.servlets.DefaultServlet;
 
-public class FrontController extends DefaultServlet {
+public class FrontController2 extends DefaultServlet {
 	private static final long serialVersionUID = 3479236907455377769L;
 	
 	private RequestHelper rh = new RequestHelper();

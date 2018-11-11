@@ -21,10 +21,10 @@ public class RequestHelper {
 		}
 		switch(switchString) {
 		case "home": hd.goHome(req, resp); break;
-		case "login": if("POST".equals(req.getMethod())) {
+		case "norequest": if("POST".equals(req.getMethod())) {
 			ld.login(req, resp);
 		} else {
-			ld.getPage(req, resp);
+			System.out.println("Shrug");//ld.getPage(req, resp);
 		} break;
 		case "logout": ld.logout(req, resp); break;
 		default: break;

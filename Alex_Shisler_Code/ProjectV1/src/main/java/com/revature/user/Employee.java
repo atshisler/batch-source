@@ -1,5 +1,7 @@
 package com.revature.user;
 
+import java.util.ArrayList;
+
 public class Employee {
 
 	private String username;
@@ -8,14 +10,13 @@ public class Employee {
 	private String lastName;
 	private String email;
 	private String title;
-	private double reimbursement;
-	private String status;
-
+	private int E_ID;
+	private ArrayList<Reimbursement> reimburseList;
 	public Employee() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String username, String password, String firstName, String lastName, String email, String title) {
+	public Employee(String username, String password, String firstName, String lastName, String email, String title, int E_ID) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -23,18 +24,41 @@ public class Employee {
 		this.lastName = lastName;
 		this.email = email;
 		this.title = title;
-		this.reimbursement = 0.0;
-		this.status = "";
+		this.E_ID = E_ID;
+		this.reimburseList = new ArrayList<Reimbursement>();
+	}
+	
+	
+	public int getE_ID() {
+		return E_ID;
+	}
+
+
+	public ArrayList<Reimbursement> getReimburseList() {
+		return reimburseList;
+	}
+
+	public void setReimburseList(ArrayList<Reimbursement> reimburseList) {
+		this.reimburseList = reimburseList;
+		//for(int i = 0; i < reimburseList.size(); i++)
+			//this.reimburseList.add(reimburseList.get(i));
+	}
+	public void addReimbursement(String status, double amount) {
+		Reimbursement reBurst = new Reimbursement(E_ID, status, amount);
+		reimburseList.add(reBurst);
+	}
+	
+	public void removeReimbursement(int id) {
+		reimburseList.remove(id);
+	}
+	public String getEmail() {
+		return email;
 	}
 
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
-
-	public String getEmail() {
-		return email;
+		return "Employee [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", title=" + title  + "]";
 	}
 
 	public void setEmail(String email) {
@@ -79,22 +103,6 @@ public class Employee {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public double getReimbursement() {
-		return reimbursement;
-	}
-
-	public void setReimbursement(double reimbursement) {
-		this.reimbursement = reimbursement;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 }

@@ -4,40 +4,54 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Page Title</title>
+<title>Project 1</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="../css/Employee.css" />
+<link rel="stylesheet" type="text/css" href="Employee.css" />
+
 </head>
 
-<body class = "container">
-<header>
-	<div>
-		<nav class="navbar navbar-expand bg-dark">
-			<a id="home" class="navbar-expand" href="#">Home</a>
-			<ul class="navbar-nav">
-				<li class="nav-item"><a id="Info" class="nav-link" href=#>Employee
-						Information</a></li>
-				<li class="nav-item"><a id="Reimburse" class="nav-link" href=#>Reimbursements</a>
-				</li>
-			</ul>
-		</nav>
-	</div>
+<body class="container">
+	<header>
+		<div>
+			<nav class="navbar navbar-expand bg-dark">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a id="Info" class="nav-link"
+						href=EmployeePage.html>Employee Information</a></li>
+					<li class="nav-item"><a id="Reimburse" class="nav-link"
+						href=Reimbursement.html>Reimbursements</a></li>
+					</li>
+				</ul>
+				<button class="btn btn-outline-primary"
+					background-color="transparent" border-color="transparent"
+					id="Logout">Logout</button>
+			</nav>
+		</div>
 	</header>
 	<div>
+		<h2 id="Welcome"></h2>
+
 		<div>
-			<p id="first">First Name</p>
-			<p id="last">Last Name</p>
-			<p id="username">User Name</p>
-			<p id="email">Email</p>
-			<button type = "button" class = "btn btn-dark" id = "display">Show Info</button>
+			<button type="button" class="btn btn-dark" id="display">Show
+				Info</button>
+			<button type="button" class="btn btn-dark" id="update">Update
+				Info</button>
+
 		</div>
 	</div>
+	<div id=liD>
+		<ul class="list-group" id="employeeInfoList">
 
-	
+		</ul>
+	</div>
+
+
+
+	<script type="text/javascript" src="EmployeePage.js"></script>
 </body>
-<script type="text/javascript" src="EmployeePage.js"></script>
+
 </html>

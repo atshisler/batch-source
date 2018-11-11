@@ -19,8 +19,6 @@ public class LoginOracle implements LoginDao {
 		String sql = "Select E_EMAIL, E_PASSWORD from EmployeeTable "
 				+ "where E_EMAIL = ? AND E_PASSWORD = ?";
 		//sql = "Select * from EmployeeTable";
-		System.out.println("Final Test " + username);
-		System.out.println(password);
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);

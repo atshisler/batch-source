@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" 
-         version="2.5" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"> 
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<display-name>Archetype Created Web Application</display-name>
-	
+
 	<servlet>
 		<servlet-name>FrontController</servlet-name>
-		<servlet-class>com.revature.controller.FrontController</servlet-class>
+		<servlet-class>com.revature.controllerv1.FrontController</servlet-class>
 		<init-param>
-			<param-name>email</param-name>
-			<param-value>noname</param-value>
-		</init-param>
-		<init-param>
-			<param-name>password</param-name>
-			<param-value>nopass</param-value>
+			<param-name>request</param-name>
+			<param-value>norequest</param-value>
 		</init-param>
 	</servlet>
 
@@ -24,6 +19,7 @@
 		<servlet-name>FrontController</servlet-name>
 		<url-pattern>/api</url-pattern>
 	</servlet-mapping>
+	
 
 	
 

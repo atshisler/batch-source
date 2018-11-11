@@ -1,11 +1,20 @@
 package com.revature.dao;
 
-import com.revature.user.Employee;
+
+import java.util.ArrayList;
+
+import com.revature.user.Reimbursement;
 
 public interface ReimbursementDAO {
-	public boolean insertReimbursements(Employee employee);
+	public boolean insertReimbursements(Reimbursement reimburse);
 
-	public Employee getReimbursement();
+	public Reimbursement deleteReimbursement(int id);
 
-	public Employee searchReimbursements();
+	public Reimbursement searchReimbursements(int id);
+	
+	public ArrayList<Reimbursement> getReimbursList(int E_ID);//get a specific user's reimbursements
+	
+	public Reimbursement updateReimbursement(String status);//usable only by manager
+	
+	
 }
