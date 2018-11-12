@@ -49,6 +49,7 @@ public class RequestHelperV1 {
 			break;
 		case "updateInfo":
 			System.out.println("Updating Info");
+			ed.updateEmp(req, resp);
 			break;
 		case "logout":
 			System.out.println("Logging out");

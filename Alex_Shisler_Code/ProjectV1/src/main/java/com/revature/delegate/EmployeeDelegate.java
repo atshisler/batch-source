@@ -89,6 +89,29 @@ public class EmployeeDelegate {
 			
 		}
 	}
+	
+	public void updateEmp(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException{
+		Cookie email = cooks.getCookie("email", req);
+		Employee temp;
+		employee = employeeDAO.getEmployee(email.getValue());
+		
+		if(employee == null)
+			System.out.println("Failure!");
+		else {
+			String data = getBody(req);
+			System.out.println(data);
+			temp = new ObjectMapper().readValue(data, Employee.class);
+			System.out.println(temp);
+			employee.setUsername(temp.getUsername());
+			employee.setFirstName(temp.getFirstName());
+			employee.setLastName(temp.getLastName());
+			employee.setDesc(temp.getDesc());
+			System.out.println(employee.toString());
+			employeeDAO.updateEmployee(employee);
+			resp.setStatus(201);
+			return;
+		}
+	}
 
 	private String getBody(HttpServletRequest req) throws ServletException, IOException {
 		StringBuilder buffer = new StringBuilder();

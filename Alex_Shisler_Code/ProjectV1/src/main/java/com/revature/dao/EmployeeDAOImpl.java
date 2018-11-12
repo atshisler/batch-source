@@ -59,7 +59,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				return new Employee(rs.getString("E_USERNAME"), rs.getString("E_PASSWORD"), rs.getString("E_FIRSTNAME"),
-						rs.getString("E_LASTNAME"), rs.getString("E_EMAIL"), rs.getString("E_TITLE"),
+						rs.getString("E_LASTNAME"), rs.getString("E_EMAIL"), rs.getString("E_TITLE"), rs.getString("E_DESCRP"),
 						rs.getInt("E_ID"));
 			} // WHILE
 		} catch (SQLException s) {
@@ -85,7 +85,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			while (rs.next()) {
 				empList.add(new Employee(rs.getString("E_USERNAME"), rs.getString("E_PASSWORD"),
 						rs.getString("E_FIRSTNAME"), rs.getString("E_LASTNAME"), rs.getString("E_EMAIL"),
-						rs.getString("E_TITLE"), rs.getInt("E_ID")));
+						rs.getString("E_TITLE"), rs.getString("E_DESCRP"), rs.getInt("E_ID")));
 			} // while still has stuff
 			return empList;
 		} catch (SQLException s) {
@@ -101,6 +101,29 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	@Override
 	public boolean updateEmployee(Employee employee) {
 		// TODO Auto-generated method stub
+		Connection conn = null;
+		conn = cu.getConnection();
+		String sql = "update employeeTable set E_USERNAME = ?, E_FIRSTNAME = ?, E_LASTNAME = ?, E_DESCRP = ? where E_ID = ?";
+		try { // parameters
+			PreparedStatement ps = conn.prepareStatement(sql);
+			// ps.setInt(1, banker.getCid());
+			ps.setString(1, employee.getUsername());
+			ps.setString(2, employee.getFirstName());
+			ps.setString(3, employee.getLastName());
+			ps.setString(4, employee.getDesc());
+			ps.setInt(5, employee.getE_ID());
+
+			if (ps.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (SQLException s) {
+			Log.error("Catch block in insertEmployee - DAO Implementation - occured");
+			System.out.println(s.getMessage());
+			// s.printStackTrace();
+		} finally {
+			;// Log.warn("executed finally block");
+		}
+
 		return false;
 	}
 

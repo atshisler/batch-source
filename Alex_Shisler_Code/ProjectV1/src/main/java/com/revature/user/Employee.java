@@ -10,13 +10,14 @@ public class Employee {
 	private String lastName;
 	private String email;
 	private String title;
+	private String desc;
 	private int E_ID;
 	private ArrayList<Reimbursement> reimburseList;
 	public Employee() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String username, String password, String firstName, String lastName, String email, String title, int E_ID) {
+	public Employee(String username, String password, String firstName, String lastName, String email, String title, String desc, int E_ID) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -24,6 +25,7 @@ public class Employee {
 		this.lastName = lastName;
 		this.email = email;
 		this.title = title;
+		this.desc = desc;
 		this.E_ID = E_ID;
 		this.reimburseList = new ArrayList<Reimbursement>();
 	}
@@ -55,10 +57,14 @@ public class Employee {
 		return email;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", title=" + title  + "]";
+	
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 	public void setEmail(String email) {
@@ -103,6 +109,12 @@ public class Employee {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", title=" + title + ", desc=" + desc + "]";
 	}
 
 }
