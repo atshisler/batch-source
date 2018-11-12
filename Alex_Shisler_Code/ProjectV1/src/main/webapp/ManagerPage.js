@@ -1,11 +1,14 @@
+/**
+ * 
+ */
 /*
  * Programmer: Alex Shisler
- * EmployeeLogin.js
+ * Manager.js
  */
 
 
 	var jsonResponse;
-	let welcomeTxt = document.getElementById("Welcome").innerHTML = "Welcome Back " + getCookie("username");
+	let welcomeTxt = document.getElementById("Welcome").innerHTML = "Welcome Manager " + getCookie("username");
 	// document.getElementById("crP").innerHTML = "Invalid Credentials, please
 	// try again.";
 	

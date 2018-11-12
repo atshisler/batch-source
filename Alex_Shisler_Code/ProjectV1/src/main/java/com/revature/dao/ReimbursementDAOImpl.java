@@ -91,7 +91,7 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		Connection conn = null;
 		conn = cu.getConnection();
 		String sql = "select * from reimbursementTable where E_ID = ? ORDER BY R_ID";//  where E_ID = ? ORDER BY R_ID
-		
+		System.out.println(E_ID);
 		try {
 			ArrayList<Reimbursement> remList;
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -115,9 +115,29 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 
 	@Override
-	public Reimbursement updateReimbursement(String status) {
+	public boolean updateReimbursement(int id, String status) {
 		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;
+		conn = cu.getConnection();
+		String sql = "update reimbursementTable set R_STATUS = ? where R_ID = ?";
+		try { // parameters
+			PreparedStatement ps = conn.prepareStatement(sql);
+			// ps.setInt(1, banker.getCid());
+			ps.setString(1, status);
+			ps.setInt(2, id);
+			
+			if (ps.executeUpdate() > 0) {
+				return true;
+			}
+		} catch (SQLException s) {
+			Log.error("Catch block in insertEmployee - DAO Implementation - occured");
+			System.out.println(s.getMessage());
+			// s.printStackTrace();
+		} finally {
+			;// Log.warn("executed finally block");
+		}
+
+		return false;
 	}
 
 

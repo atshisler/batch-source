@@ -78,10 +78,17 @@ public class LoginDelegate {
 		} else {
 			resp.setStatus(301);
 			System.out.println("Redirect to EP");
-			resp.sendRedirect("EmployeePage.html");
-			return;
-		}
-	}
+			if(emp.getTitle().equals("Manager")){
+				resp.sendRedirect("ManagerPage.html");
+				return;
+				}//if manager
+			else {
+				resp.sendRedirect("EmployeePage.html");
+				return;
+				}//not a manager.
+			}//triumph
+		
+		}//getPage
 
 	public void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		req.getSession().invalidate();

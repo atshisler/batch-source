@@ -14,7 +14,7 @@ public interface ReimbursementDAO {
 	
 	public ArrayList<Reimbursement> getReimbursList(int E_ID);//get a specific user's reimbursements
 	
-	public Reimbursement updateReimbursement(String status);//usable only by manager
+	public boolean updateReimbursement(int id, String status);//usable only by manager
 	
 	
 }

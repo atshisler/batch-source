@@ -2,6 +2,7 @@ package com.revature.delegate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -111,7 +112,54 @@ public class EmployeeDelegate {
 			resp.setStatus(201);
 			return;
 		}
+	}//updateEmp
+	
+	//-------------------------------EmployeeRequests-------------------------------------//
+	
+	public void getAllEmployees(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+		ArrayList<Employee> empList;
+		
+		empList = employeeDAO.getEmployeeList();
+		
+		if(empList.isEmpty()) {
+			resp.sendError(404);
+		}
+		else {
+			reimbursementDAO = reimbursementDAO.getRDAO();
+			for(int i = 0; i < empList.size(); i++) {
+				System.out.println(empList.get(i));
+				empList.get(i).setReimburseList(reimbursementDAO.getReimbursList(empList.get(i).getE_ID()));
+				for(int x = 0; x < empList.get(i).getReimburseList().size(); x++)
+					System.out.println(empList.get(i).getReimburseList().get(x));
+				
+				
+			}//addReimbursements
+			ObjectMapper mapper = new ObjectMapper();
+			resp.setStatus(201);
+			resp.setHeader("Content-Type", "application/json");
+			resp.setHeader("Access-Control-Allow-Origin", "*");
+			resp.setHeader("Access-Control-Allow-Credentials", "true");
+			resp.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+			mapper.writeValue(resp.getOutputStream(), empList);
+		}//list acquired
+		
 	}
+	
+	
+	
+	//---------------------------------ManagerRequests------------------------------------//
+	
+	public void approveRequests(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		String data = getBody(req);
+		System.out.println(data);
+		Reimbursement approval = new ObjectMapper().readValue(data, Reimbursement.class);
+		reimbursementDAO = reimbursementDAO.getRDAO();
+		reimbursementDAO.updateReimbursement(approval.getId(), approval.getStatus());
+	}//approveRequest
+	
+	
+	
+	//----------------------------------Helper----------------------------------------------//
 
 	private String getBody(HttpServletRequest req) throws ServletException, IOException {
 		StringBuilder buffer = new StringBuilder();

@@ -74,7 +74,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public ArrayList<Employee> getEmployeeList() {
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		String sql = "select * from employeeTable ORDER BY U_ID";
+		String sql = "select * from employeeTable ORDER BY E_ID";
 		conn = cu.getConnection();
 		try {
 			ArrayList<Employee> empList;

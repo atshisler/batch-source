@@ -51,6 +51,14 @@ public class RequestHelperV1 {
 			System.out.println("Updating Info");
 			ed.updateEmp(req, resp);
 			break;
+		case "empList":
+			System.out.println("Get ALL the employees");
+			ed.getAllEmployees(req, resp);
+			break;
+		case "approvReq":
+			System.out.println("Approvin' eh?");
+			ed.approveRequests(req, resp);
+			break;
 		case "logout":
 			System.out.println("Logging out");
 			ld.logout(req, resp);

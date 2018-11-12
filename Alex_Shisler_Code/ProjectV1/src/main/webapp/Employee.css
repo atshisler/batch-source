@@ -23,8 +23,14 @@ nav{
 }
 .btn-dark{
 	color: white;
-	font-family: inherit;
+	font-family: arial;
 	font-size: large;
 	style: bold;
 }
+.btn-light{
+	font-family: arial;
+	font-size: large;
+	style: bold;
+}
+
 

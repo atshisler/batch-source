@@ -12,7 +12,7 @@ window.onload = function() {
 }
 // ------------------------Update Rows--------------------------//
 function updateRows() {
-	let status = document.getElementById("mstatus");
+	//let status = document.getElementById("mstatus");
 	let amount = document.getElementById("amount");
 	for (let i = 0; i < reList.length; i++){
 		console.log(reList[i]);
@@ -33,7 +33,7 @@ function updateRows() {
 // ------------------------Add Rows--------------------------//
 
 function addRows() {
-	let status = document.getElementById("mstatus");
+	//let status = document.getElementById("mstatus");
 	let amount = document.getElementById("amount").value;
 
 	console.log(amount);
