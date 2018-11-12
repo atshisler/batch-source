@@ -27,7 +27,7 @@
 
 var jsonResponse;
 var isRedirect = false;
-window.onload = () =>{
+
 	// window.location.replace("EmployeePage.html");
 	console.log("Test");
 	let btn = document.getElementById("loggin");
@@ -35,7 +35,7 @@ window.onload = () =>{
 		btn.addEventListener("click", login);
 	
 	//btn.addEventListener("click", ()=> 
-};
+
 
 
 
@@ -99,6 +99,7 @@ function requestRedirect(){
 		if((requestRedirect.readyState == 4) && requestRedirect.status == 200){
 			request = "";
 			console.log("Success");
+			console.log(requestRedirect.responseText);
 			document.write(requestRedirect.responseText);
 		}// response received.
 	};//response received

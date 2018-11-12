@@ -5,9 +5,10 @@
 
 var isEmployAll = false;
 var onlyPRequests = false;
-var onlyRRequests = false
+var onlyRRequests = false;
+var allRequests = false;
 var hasData = false;
-var jsonTable
+var jsonTable;
 // ------------------------Vars-----------------//
 
 	let btn = document.getElementById("showEmps");
@@ -17,6 +18,7 @@ var jsonTable
 			isEmployAll = true;
 			onlyPRequests = false;
 			onlyRRequests = false;
+			allRequests = false;
 			getEmps();
 		}// retrieveInfo
 		else
@@ -29,6 +31,7 @@ var jsonTable
 			isEmployAll = false;
 			onlyPRequests = true;
 			onlyRRequests = false;
+			allRequests = false;
 			getEmps();
 			
 		}// retrieveInfo
@@ -42,12 +45,27 @@ var jsonTable
 			isEmployAll = false;
 			onlyPRequests = false;
 			onlyRRequests = true;
+			allRequests = false;
 			getEmps();
 			
 		}// retrieveInfo
 		else
 			showResolved(jsonTable);	
 	});// showResolved
+	
+	let allBtn = document.getElementById("showAll");
+	allBtn.addEventListener("click", ()=> {
+		if(!hasData){
+			isEmployAll = false;
+			onlyPRequests = false;
+			onlyRRequests = false;
+			allRequests = true;
+			getEmps();
+			
+		}// retrieveInfo
+		else
+			showAll(jsonTable);	
+	});// showAll
 	
 	let approvBtn = document.getElementById("approveBtn");
 	let denyBtn = document.getElementById("denyBtn");
@@ -174,11 +192,39 @@ var jsonTable
 			}// reimbursements
 		}// all employees
 		onlyRequests = true;
-	}// showPending
+	}// showResoloved
 	
 	
-	function showRequests(jsonTable){
-	
+	function showAll(jsonTable){
+		removeRows();
+		for(let i = 0; i < jsonTable.length; i++){
+			for(let x = 0; x < jsonTable[i].reimburseList.length; x++){
+					let row = document.createElement("tr");
+					let firstCol = document.createElement("td");
+					let lastCol = document.createElement("td");
+					let userCol = document.createElement("td");
+					let emailCol = document.createElement("td");
+					let amountCol = document.createElement("td");
+					let statusCol = document.createElement("td");
+					let rIdCol = document.createElement("td");
+					firstCol.textContent = jsonTable[i].firstName;
+					lastCol.textContent = jsonTable[i].lastName;
+					userCol.textContent = jsonTable[i].username;
+					emailCol.textContent = jsonTable[i].email;
+					statusCol.textContent = jsonTable[i].reimburseList[x].status;
+					amountCol.textContent = "$" + jsonTable[i].reimburseList[x].amount;
+					rIdCol.textContent = "RID: " + jsonTable[i].reimburseList[x].id;
+					row.appendChild(firstCol);
+					row.appendChild(lastCol);
+					row.appendChild(userCol);
+					row.appendChild(emailCol);
+					row.appendChild(statusCol);
+					row.appendChild(amountCol);
+					row.appendChild(rIdCol);
+					document.getElementById("myTable").appendChild(row);
+			}// reimbursements
+		}// all employees
+		allRequests = true;
 	}
 	// --------------------------------showResolved-----------------------------//
 	
@@ -195,6 +241,8 @@ var jsonTable
 				 	showPending(jsonTable);
 				 if(onlyRRequests)
 				 	showResolved(jsonTable);
+				 if(allRequests)
+					 showAll(jsonTable);
 				hasData = true;
 			}// response received.
 		};// statechange

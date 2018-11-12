@@ -9,9 +9,12 @@
 	// document.getElementById("crP").innerHTML = "Invalid Credentials, please
 	// try again.";
 	
-	
-// --------------------------AJAX Info
-// Retrieval-------------------------------------//
+	console.log(window.location.href);
+	window.onload = function() {
+		  	console.log(window.location.href);
+		  	//window.location.assign("EmployeePage.html");
+		};
+// --------------------------AJAX Info Retrieval-------------------------------------//
 	var xhr2 = new XMLHttpRequest();
 	console.log("Test" + xhr2.responseText);
 	xhr2.onreadystatechange = function(){
