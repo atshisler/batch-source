@@ -1,7 +1,21 @@
 package com.revature.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Cave {
 
+@Id
+@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="caveSequence")
+@SequenceGenerator(name = "caveSequence", allocationSize = 1, sequenceName = "SQ_CAVE_PK")
+@Column(name = "CAVE_ID")
 private int id;
 private String name;
 

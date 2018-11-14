@@ -20,5 +20,9 @@
 		<mapping resource="mapping/cavehbm.xml" />
 		<mapping resource="mapping/Bear.hbm.xml" />
 		<mapping resource="mapping/Beehive.hbm.xml" />
+		<mapping class = "com.revature.models.Cave" />
+		<mapping class = "com.revature.models.Bear" />
+		<mapping class = "com.revature.models.Beehive" />
+		
 	</session-factory>
 </hibernate-configuration>

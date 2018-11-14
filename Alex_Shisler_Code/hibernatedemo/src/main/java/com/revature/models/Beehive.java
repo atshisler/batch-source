@@ -1,7 +1,20 @@
 package com.revature.models;
 
-public class Beehive {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity
+@Table
+public class Beehive {
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "beehiveSequence")
+	@SequenceGenerator(name="beehiveSequence", allocationSize=1, sequenceName= "SQ_BEEHIVE_PK")
+	@Column(name="BEEHIVE_ID")
 	private int id;
 	private int weight;
 	public Beehive() {
