@@ -90,7 +90,13 @@ public class LoginDelegate {
 		
 		}//getPage
 
-	public void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Cookie email = cooks.getCookie("email", req);
+		Cookie username = cooks.getCookie("username", req);
+		email.setMaxAge(0);
+		username.setMaxAge(0);
+		resp.addCookie(email);
+		resp.addCookie(username);
 		req.getSession().invalidate();
 		resp.setStatus(301);
 		resp.sendRedirect("EmployeeLoginPage.html");

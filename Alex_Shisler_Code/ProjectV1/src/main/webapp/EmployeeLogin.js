@@ -29,11 +29,12 @@ var jsonResponse;
 var isRedirect = false;
 
 	// window.location.replace("EmployeePage.html");
+window.onload = function() {
 	console.log("Test");
 	let btn = document.getElementById("loggin");
 	
 		btn.addEventListener("click", login);
-	
+}
 	//btn.addEventListener("click", ()=> 
 
 
@@ -100,6 +101,7 @@ function requestRedirect(){
 			request = "";
 			console.log("Success");
 			console.log(requestRedirect.responseText);
+			//location.href = requestRedirect.responseText;
 			document.write(requestRedirect.responseText);
 		}// response received.
 	};//response received
