@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+@NamedQueries({@NamedQuer(name="getByIdQuery"))
 
 @Entity
 @Table
@@ -35,7 +38,7 @@ public class Bear {
 	@JoinColumn(name = "CAVE_ID")
 	private Cave cave;
 	//@Transient
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "BEAR_BEEHIVE", 
 	joinColumns = {@JoinColumn(name= "BEAR_ID")},
 	inverseJoinColumns = {@JoinColumn(name = "BEEHIVE_ID")})
@@ -44,6 +47,13 @@ public class Bear {
 	public Bear() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Bear(String name, Date birthday, Cave cave) {
+		super();
+		this.name = name;
+		this.birthday = birthday;
+		this.cave = cave;
 	}
 
 	public Bear(int id, String name, Date birthday, Cave cave) {
@@ -92,6 +102,12 @@ public class Bear {
 
 	public void setCave(Cave cave) {
 		this.cave = cave;
+	}
+
+	@Override
+	public String toString() {
+		return "Bear [id=" + id + ", name=" + name + ", birthday=" + birthday + ", cave=" + cave + ", beehives="
+				 + "]";
 	}
 
 }
