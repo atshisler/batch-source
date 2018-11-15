@@ -1,22 +1,21 @@
-
+package com.revature.jenkins;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class JenkinsTestWeb
+ * Servlet implementation class JenkinsTest2
  */
-public class JenkinsTestWeb extends HttpServlet {
+public class JenkinsTest2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public JenkinsTestWeb() {
+    public JenkinsTest2() {
         // TODO Auto-generated constructor stub
     }
 

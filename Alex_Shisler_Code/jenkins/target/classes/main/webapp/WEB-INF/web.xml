@@ -10,8 +10,18 @@
   	<description></description>
   	<servlet-class>JenkinsTestWeb</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>JenkinsTest2</servlet-name>
+  	<display-name>JenkinsTest2</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.jenkins.JenkinsTest2</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>JenkinsTestWeb</servlet-name>
   	<url-pattern>/JenkinsTestWeb</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>JenkinsTest2</servlet-name>
+  	<url-pattern>/JenkinsTest2</url-pattern>
   </servlet-mapping>
 </web-app>
