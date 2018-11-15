@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>JenkinsTestWeb</servlet-name>
+  	<display-name>JenkinsTestWeb</display-name>
+  	<description></description>
+  	<servlet-class>JenkinsTestWeb</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>JenkinsTestWeb</servlet-name>
+  	<url-pattern>/JenkinsTestWeb</url-pattern>
+  </servlet-mapping>
 </web-app>
